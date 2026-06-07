@@ -1,0 +1,460 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dev Workspace // Senior Frontend Portfolio Workbench</title>
+  
+  <!-- Tailwind Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- GSAP Animation Library CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  
+  <!-- Vue 3 Global Import -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
+    
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background-color: #F1F1F1;
+      color: #2E2E2E;
+    }
+
+    .font-mono-custom {
+      font-family: 'Space Mono', monospace;
+    }
+
+    /* Custom Neo-Brutalist utility configurations */
+    .border-brutal {
+      border: 3px solid #2E2E2E;
+    }
+    .shadow-brutal {
+      box-shadow: 4px 4px 0px #2E2E2E;
+    }
+    .shadow-brutal-accent {
+      box-shadow: 4px 4px 0px #FF6F20;
+    }
+    .shadow-brutal-lg {
+      box-shadow: 8px 8px 0px #2E2E2E;
+    }
+
+    /* Custom Code styling */
+    pre code {
+      display: block;
+      overflow-x: auto;
+      padding: 1.25rem;
+      background: #1c1b1a;
+      color: #F1F1F1;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.825rem;
+      line-height: 1.5;
+    }
+
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F1F1F1;
+      border-left: 3px solid #2E2E2E;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2E2E2E;
+      border: 2px solid #F1F1F1;
+    }
+  </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            neoBg: '#F1F1F1',
+            neoPrimary: '#2E2E2E',
+            neoAccent: '#FF6F20',
+            neoMuted: '#BEC3C7',
+            neoDark: '#3B3B3B',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="p-0 m-0 overflow-x-hidden">
+  <div id="app" class="min-h-screen flex flex-col xl:flex-row bg-[#F1F1F1]">
+    
+    <!-- LEFT PANEL: Interactive Live Portfolio Surface & Design Controls -->
+    <div class="flex-1 min-w-0 flex flex-col border-r-3 border-[#2E2E2E] h-screen overflow-y-auto relative">
+      
+      <!-- Top Context HUD Header -->
+      <div class="bg-[#2E2E2E] text-[#F1F1F1] px-4 py-2.5 flex items-center justify-between font-mono-custom text-xs sticky top-0 z-50">
+        <div class="flex items-center gap-2">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#FF6F20] animate-pulse"></span>
+          <span class="font-bold tracking-wider">PORTFOLIO_ENGINE // LIVE_SANDBOX</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="hidden lg:inline text-xs font-bold text-[#BEC3C7]">// TARGET: PORTFOLIO_V3</span>
+          <button @click="togglePage" class="bg-[#FF6F20] hover:bg-white text-black font-bold px-3 py-1 border-2 border-black transition-colors cursor-pointer text-[10px] tracking-wider uppercase">
+            SWAP TO: {{ currentPage === 'landing' ? 'PROJECTS' : 'LANDING' }}
+          </button>
+        </div>
+      </div>
+
+      <!-- PORTFOLIO HEADER / NAVBAR -->
+      <nav class="border-b-3 border-[#2E2E2E] bg-white sticky top-[34px] z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between h-20">
+            <!-- Branding -->
+            <div class="flex items-center gap-2">
+              <span class="bg-[#FF6F20] text-white p-2 border-3 border-[#2E2E2E] font-bold text-xl shadow-brutal flex items-center justify-center w-12 h-12 select-none">
+                S
+              </span>
+              <div>
+                <span class="font-bold text-lg tracking-tight block uppercase leading-none">STARK_DEV</span>
+                <span class="font-mono-custom text-[10px] text-[#BEC3C7] leading-none uppercase font-bold">Senior Frontend Specialist</span>
+              </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <div class="hidden md:flex items-center gap-3">
+              <button 
+                @click="currentPage = 'landing'"
+                :class="currentPage === 'landing' ? 'bg-[#FF6F20] text-white' : 'text-[#2E2E2E] hover:bg-[#F1F1F1]'"
+                class="px-4 py-1.5 border-3 border-[#2E2E2E] font-bold text-xs tracking-wide transition-all transform active:translate-y-0.5 shadow-brutal active:shadow-none"
+              >
+                // HOME
+              </button>
+              <button 
+                @click="currentPage = 'projects'"
+                :class="currentPage === 'projects' ? 'bg-[#FF6F20] text-white' : 'text-[#2E2E2E] hover:bg-[#F1F1F1]'"
+                class="px-4 py-1.5 border-3 border-[#2E2E2E] font-bold text-xs tracking-wide transition-all transform active:translate-y-0.5 shadow-brutal active:shadow-none"
+              >
+                // CASE_STUDIES
+              </button>
+            </div>
+
+            <!-- Action Tag / Availability pill -->
+            <div class="flex items-center gap-2">
+              <span class="hidden xl:inline-flex items-center gap-2 px-3 py-1 bg-white border-2 border-[#2E2E2E] font-mono-custom text-[10px] font-bold">
+                <span class="w-2 h-2 bg-green-500 rounded-full animate-ping"></span>
+                ACTIVE FOR CONTRACTS
+              </span>
+              <button @click="showToast('Contact node initialized - ready for secure telemetry.')" class="bg-[#2E2E2E] hover:bg-[#FF6F20] text-white font-bold px-4 py-2 border-3 border-[#2E2E2E] shadow-brutal hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all text-xs uppercase">
+                Ping_
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- PORTFOLIO MAIN BODY VIEWPORT -->
+      <main class="flex-1 p-4 md:p-8 space-y-12">
+        
+        <!-- PAGE 1: LANDING PAGE -->
+        <div v-if="currentPage === 'landing'" class="space-y-12">
+          
+          <!-- HERO SECTION -->
+          <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-4">
+            
+            <!-- Headline block -->
+            <div class="lg:col-span-8 space-y-6 flex flex-col justify-center">
+              <div class="gsap-hero-title inline-block bg-white border-3 border-[#2E2E2E] p-6 shadow-brutal-lg relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-[#FF6F20] text-white font-mono-custom text-xs px-2 py-1 border-b-3 border-l-3 border-[#2E2E2E] font-bold">
+                  ROLE // FRONTEND_ARCHITECT
+                </div>
+                <div class="font-mono-custom text-xs text-[#FF6F20] font-bold mb-2">// INIT_CORE_METRICS</div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight leading-tight select-none">
+                  CREATING RESILIENT <br>
+                  <span class="text-white bg-[#2E2E2E] px-2 py-1 inline-block my-1 transform -rotate-1">INTERFACE SYSTEMS</span>
+                </h1>
+                <p class="mt-4 font-mono-custom text-[#3B3B3B] text-xs sm:text-sm max-w-xl">
+                  Specializing in Nuxt 3 architectures, optimized compile pipelines, deterministic micro-interactions, and GSAP curves. Visual cleanliness driven by logic.
+                </p>
+              </div>
+
+              <!-- Metrics Row -->
+              <div class="grid grid-cols-3 gap-4 gsap-hero-metric">
+                <div class="bg-[#FF6F20] text-white border-3 border-[#2E2E2E] p-4 shadow-brutal relative hover:translate-y-[-2px] hover:translate-x-[-2px] transition-transform">
+                  <div class="text-2xl sm:text-3xl font-extrabold leading-none">03</div>
+                  <div class="font-mono-custom text-[10px] font-bold uppercase mt-1">CURATED_WORK</div>
+                </div>
+                <div class="bg-white text-[#2E2E2E] border-3 border-[#2E2E2E] p-4 shadow-brutal relative hover:translate-y-[-2px] hover:translate-x-[-2px] transition-transform">
+                  <div class="text-2xl sm:text-3xl font-extrabold leading-none">&lt; 12ms</div>
+                  <div class="font-mono-custom text-[10px] font-bold uppercase mt-1">LATENCY_BUDGET</div>
+                </div>
+                <div class="bg-white text-[#2E2E2E] border-3 border-[#2E2E2E] p-4 shadow-brutal relative hover:translate-y-[-2px] hover:translate-x-[-2px] transition-transform">
+                  <div class="text-2xl sm:text-3xl font-extrabold leading-none">100%</div>
+                  <div class="font-mono-custom text-[10px] font-bold uppercase mt-1">VUE_NATIVE_JS</div>
+                </div>
+              </div>
+
+              <!-- Quick action links -->
+              <div class="flex flex-wrap gap-4 gsap-hero-buttons">
+                <button @click="currentPage = 'projects'" class="bg-[#FF6F20] hover:bg-white text-black font-bold text-sm px-6 py-4 border-3 border-[#2E2E2E] shadow-brutal active:shadow-none active:translate-x-1 active:translate-y-1 transition-all flex items-center gap-2 font-mono-custom font-bold">
+                  EXPLORE CURATED WORK <span>→</span>
+                </button>
+                <button @click="triggerHeroAnimations" class="bg-white hover:bg-[#BEC3C7] text-[#2E2E2E] font-bold text-sm px-6 py-4 border-3 border-[#2E2E2E] shadow-brutal active:shadow-none active:translate-x-1 active:translate-y-1 transition-all flex items-center gap-2 font-mono-custom font-bold">
+                  ⚡ TRIGGER SYSTEM REBOOT
+                </button>
+              </div>
+            </div>
+
+            <!-- Terminal Simulator / Telemetry -->
+            <div class="lg:col-span-4 gsap-hero-terminal">
+              <div class="bg-white border-3 border-[#2E2E2E] shadow-brutal-lg flex flex-col h-full min-h-[350px]">
+                <!-- Panel Header -->
+                <div class="bg-[#2E2E2E] text-white px-4 py-3 border-b-3 border-[#2E2E2E] flex items-center justify-between font-mono-custom text-xs">
+                  <span>TERMINAL // DIAGNOSTICS</span>
+                  <div class="flex gap-1.5">
+                    <span class="w-3.5 h-3.5 border-2 border-white rounded-full bg-red-500"></span>
+                    <span class="w-3.5 h-3.5 border-2 border-white rounded-full bg-yellow-400"></span>
+                    <span class="w-3.5 h-3.5 border-2 border-white rounded-full bg-green-400"></span>
+                  </div>
+                </div>
+                <!-- Panel Content -->
+                <div class="p-4 bg-white flex-1 font-mono-custom text-xs text-[#2E2E2E] space-y-3 overflow-y-auto">
+                  <p class="text-[#FF6F20] font-bold">// STARK METRICS PORTAL LOADED.</p>
+                  <div class="border-l-2 border-[#2E2E2E] pl-2 space-y-1 text-[11px]">
+                    <p class="font-bold">STATUS: <span class="bg-green-100 text-green-800 px-1 border border-green-300">ONLINE</span></p>
+                    <p>ENGINE: VUE 3 COMPOSITION PIPELINE</p>
+                    <p>ANIMATION EASE: <span class="bg-orange-100 text-[#FF6F20] px-1 font-bold">{{ liveEase }}</span></p>
+                    <p>SPEED CURVE: {{ liveDuration }}s</p>
+                  </div>
+                  
+                  <!-- Dynamic selection terminal feed -->
+                  <div class="bg-[#2E2E2E] text-[#F1F1F1] p-3 border-2 border-black space-y-1 rounded-sm">
+                    <p class="text-[9px] text-[#BEC3C7]">// ACTIVE SPECIFICATION NODE:</p>
+                    <p class="font-bold text-[#FF6F20] text-sm">{{ selectedTechTelemetry.name || 'SYS_IDLE' }}</p>
+                    <p class="text-[10px] leading-tight text-slate-300">{{ selectedTechTelemetry.details || 'Select any technology in the matrix below to read active telemetry specs...' }}</p>
+                  </div>
+
+                  <div class="space-y-1 text-[10px]">
+                    <p class="text-[#BEC3C7]">LOG: ROUTED TO DEV_PORT_3000</p>
+                    <p class="text-[#BEC3C7]">LOG: TIMELINE INTERACTION ARMED</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </section>
+
+          <!-- INTERACTIVE TECH STACK MATRIX -->
+          <section class="space-y-6 pt-4 gsap-tech-section">
+            <div class="border-b-3 border-[#2E2E2E] pb-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 bg-[#FF6F20] border-2 border-[#2E2E2E]"></span>
+                <h2 class="text-xl font-black uppercase tracking-tight font-mono-custom">
+                  // TECH_STACK_MATRIX
+                </h2>
+              </div>
+              <span class="font-mono-custom text-xs text-[#BEC3C7] font-bold">INTERACTIVE TELEMETRY HOOKS ENABLED</span>
+            </div>
+
+            <!-- Stack Filters -->
+            <div class="flex flex-wrap gap-2">
+              <button 
+                v-for="cat in ['ALL', 'LANGUAGES_AND_CORE', 'FRAMEWORKS', 'ENGINEERING_AND_MOTION']" 
+                :key="cat"
+                @click="techCategory = cat"
+                :class="techCategory === cat ? 'bg-[#FF6F20] text-white shadow-brutal-accent' : 'bg-white text-[#2E2E2E] hover:bg-[#BEC3C7]'"
+                class="px-3 py-1.5 border-3 border-[#2E2E2E] font-mono-custom text-xs font-bold transition-all transform active:translate-y-0.5"
+              >
+                {{ cat.replace(/_/g, ' ') }}
+              </button>
+            </div>
+
+            <!-- Interactive Tech Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div 
+                v-for="tech in filteredTech" 
+                :key="tech.name"
+                @click="selectTech(tech)"
+                :class="selectedTechTelemetry.name === tech.name ? 'border-[#FF6F20] shadow-brutal-accent bg-orange-50' : 'border-[#2E2E2E] shadow-brutal bg-white'"
+                class="cursor-pointer border-3 p-4 transition-all duration-150 transform hover:-translate-y-1 hover:-translate-x-1 flex flex-col justify-between"
+              >
+                <div>
+                  <div class="flex items-center justify-between border-b-2 border-[#2E2E2E] pb-2 mb-3">
+                    <span class="font-mono-custom text-[9px] text-[#BEC3C7] font-bold">{{ tech.category }}</span>
+                    <span class="bg-[#2E2E2E] text-white px-1.5 py-0.5 font-mono-custom text-[8px] font-bold">{{ tech.shortName }}</span>
+                  </div>
+                  <h3 class="text-lg font-bold uppercase tracking-tight leading-tight">{{ tech.name }}</h3>
+                  <p class="text-[11px] text-[#3B3B3B] mt-1 line-clamp-2 font-mono-custom">{{ tech.usage }}</p>
+                </div>
+
+                <!-- Brutalist progress blocks -->
+                <div class="mt-4 pt-3 border-t-2 border-[#F1F1F1]">
+                  <div class="flex justify-between font-mono-custom text-[10px] font-bold text-[#2E2E2E] mb-1">
+                    <span>PROFICIENCY</span>
+                    <span>{{ tech.grade * 10 }}%</span>
+                  </div>
+                  <div class="flex gap-0.5">
+                    <span 
+                      v-for="block in 10" 
+                      :key="block"
+                      :class="block <= tech.grade ? 'bg-[#FF6F20] border-[#2E2E2E]' : 'bg-[#BEC3C7] border-[#2E2E2E]'"
+                      class="h-3.5 flex-1 border"
+                    ></span>
+                  </div>
+                  <span class="text-[8px] font-mono-custom text-[#BEC3C7] block mt-1.5">// CLICK TO READ DIAGNOSTIC</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- CORE ABILITIES -->
+          <section class="space-y-6 pt-4">
+            <div class="border-b-3 border-[#2E2E2E] pb-2 flex items-center justify-between">
+              <h2 class="text-xl font-black uppercase tracking-tight font-mono-custom">
+                // CRITICAL_OPERATIONAL_POSTURES
+              </h2>
+              <span class="font-mono-custom text-xs text-[#BEC3C7] font-bold">RELIABILITY INDEX // 100%</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <!-- Grid item 1 -->
+              <div class="bg-white border-3 border-[#2E2E2E] p-6 shadow-brutal hover:translate-y-[-4px] hover:translate-x-[-4px] hover:shadow-brutal-accent transition-all duration-150">
+                <span class="bg-[#2E2E2E] text-[#FF6F20] px-2 py-1 font-mono-custom text-xs font-bold border border-[#2E2E2E]">01</span>
+                <h3 class="text-lg font-bold uppercase mt-4 mb-2">VUE 3 & NUXT 3 ARCHITECTURE</h3>
+                <p class="text-xs font-mono-custom text-[#3B3B3B]">
+                  Unidirectional reactive data streams, optimized component lifecycle hooks, deep tree-shaking, and custom modular frameworks.
+                </p>
+              </div>
+
+              <!-- Grid item 2 -->
+              <div class="bg-white border-3 border-[#2E2E2E] p-6 shadow-brutal hover:translate-y-[-4px] hover:translate-x-[-4px] hover:shadow-brutal-accent transition-all duration-150">
+                <span class="bg-[#FF6F20] text-white px-2 py-1 font-mono-custom text-xs font-bold border border-[#2E2E2E]">02</span>
+                <h3 class="text-lg font-bold uppercase mt-4 mb-2">BRUTALIST PERFORMANCE</h3>
+                <p class="text-xs font-mono-custom text-[#3B3B3B]">
+                  Sub-millisecond paint loops, structured component layouts, streamlined CSS footprints, and strong component safety rules.
+                </p>
+              </div>
+
+              <!-- Grid item 3 -->
+              <div class="bg-white border-3 border-[#2E2E2E] p-6 shadow-brutal hover:translate-y-[-4px] hover:translate-x-[-4px] hover:shadow-brutal-accent transition-all duration-150">
+                <span class="bg-[#2E2E2E] text-[#FF6F20] px-2 py-1 font-mono-custom text-xs font-bold border border-[#2E2E2E]">03</span>
+                <h3 class="text-lg font-bold uppercase mt-4 mb-2">GSAP ENGINE DYNAMICS</h3>
+                <p class="text-xs font-mono-custom text-[#3B3B3B]">
+                  Dynamic timeline manipulation, fluid layouts, responsive canvas triggers, and tight render-blocking safeguards.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- PREVIEW CTA -->
+          <section class="bg-white border-3 border-[#2E2E2E] p-8 shadow-brutal flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="space-y-2">
+              <h3 class="text-xl font-black uppercase">CURATED TECHNICAL INDEX</h3>
+              <p class="font-mono-custom text-xs text-[#3B3B3B] max-w-xl">
+                Ready to view actual live performance indices? Browse 3 elaborate real-world projects built for responsive and robust scale.
+              </p>
+            </div>
+            <button @click="currentPage = 'projects'" class="bg-[#FF6F20] hover:bg-[#2E2E2E] hover:text-white text-black font-bold text-xs px-6 py-4 border-3 border-[#2E2E2E] shadow-brutal active:shadow-none active:translate-x-1 active:translate-y-1 transition-all font-mono-custom font-bold">
+              GO_TO_PROJECTS_GRID //
+            </button>
+          </section>
+
+        </div>
+
+        <!-- PAGE 2: PROJECTS PAGE -->
+        <div v-else-if="currentPage === 'projects'" class="space-y-8">
+          
+          <!-- Projects Header & Filters -->
+          <div class="border-3 border-[#2E2E2E] bg-white p-6 shadow-brutal flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <div class="font-mono-custom text-xs text-[#FF6F20] font-bold mb-1">// SYSTEM_PORTFOLIO_ARCHIVE</div>
+              <h2 class="text-2xl font-black uppercase">CASE STUDIES // PROJECTS</h2>
+            </div>
+            
+            <!-- Category Tabs -->
+            <div class="flex flex-wrap gap-2">
+              <button 
+                v-for="cat in ['ALL', 'SYSTEMS', 'PERFORMANCE', 'DYNAMIC_UI']" 
+                :key="cat"
+                @click="selectedCategory = cat"
+                :class="selectedCategory === cat ? 'bg-[#FF6F20] text-white shadow-brutal-accent' : 'bg-white text-[#2E2E2E] hover:bg-[#F1F1F1]'"
+                class="px-4 py-1.5 border-3 border-[#2E2E2E] font-mono-custom text-xs font-bold transition-all transform active:translate-y-0.5"
+              >
+                {{ cat }}
+              </button>
+            </div>
+          </div>
+
+          <!-- Project Cards Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <div 
+              v-for="project in filteredProjects" 
+              :key="project.id"
+              class="project-card bg-white border-3 border-[#2E2E2E] shadow-brutal hover:shadow-brutal-accent hover:translate-y-[-4px] hover:translate-x-[-4px] transition-all duration-200 flex flex-col h-full"
+            >
+              <!-- Card Header / Banner -->
+              <div class="h-44 border-b-3 border-[#2E2E2E] bg-[#3B3B3B] p-4 flex flex-col justify-between relative overflow-hidden">
+                <!-- Grid background simulation -->
+                <div class="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#BEC3C7_1px,transparent_1px),linear-gradient(to_bottom,#BEC3C7_1px,transparent_1px)] bg-[size:16px_16px]"></div>
+                
+                <div class="flex justify-between items-start z-10">
+                  <span class="bg-white text-[#2E2E2E] border-2 border-[#2E2E2E] px-2 py-0.5 font-mono-custom text-[9px] font-bold uppercase">
+                    {{ project.tag }}
+                  </span>
+                  <span class="text-white font-mono-custom text-[10px] font-bold bg-[#FF6F20] px-2 py-0.5 border-2 border-black">
+                    {{ project.metric }}
+                  </span>
+                </div>
+                
+                <div class="z-10 bg-white border-2 border-[#2E2E2E] p-2">
+                  <h4 class="text-base font-black uppercase text-[#2E2E2E] tracking-tight leading-none truncate">{{ project.title }}</h4>
+                  <span class="font-mono-custom text-[9px] text-[#BEC3C7] uppercase mt-1 block font-bold">{{ project.role }}</span>
+                </div>
+              </div>
+
+              <!-- Card Tabs -->
+              <div class="flex border-b-3 border-[#2E2E2E] bg-[#F1F1F1] text-[10px] font-mono-custom font-bold">
+                <button 
+                  @click="project.activeTab = 'summary'"
+                  :class="project.activeTab === 'summary' ? 'bg-white border-r-3 border-[#2E2E2E] text-[#FF6F20]' : 'text-[#3B3B3B] border-r-3 border-[#2E2E2E] hover:bg-white'"
+                  class="flex-1 py-2 text-center"
+                >
+                  SUMMARY
+                </button>
+                <button 
+                  @click="project.activeTab = 'specs'"
+                  :class="project.activeTab === 'specs' ? 'bg-white text-[#FF6F20]' : 'text-[#3B3B3B] hover:bg-white'"
+                  class="flex-1 py-2 text-center"
+                >
+                  TELEMETRY
+                </button>
+              </div>
+
+              <!-- Dynamic Content Block -->
+              <div class="p-4 flex-1 flex flex-col justify-between space-y-4">
+                <div class="min-h-[100px]">
+                  <div v-if="project.activeTab === 'summary'" class="space-y-2">
+                    <p class="text-xs text-[#2E2E2E] font-medium leading-relaxed font-mono-custom">{{ project.desc }}</p>
+                  </div>
+                  <div v-else-if="project.activeTab === 'specs'" class="space-y-2">
+                    <div v-for="metric in project.metrics" :key="metric" class="flex items-center gap-2">
+                      <span class="w-2 h-2 bg-[#FF6F20] border border-[#2E2E2E]"></span>
+                      <span class="font-mono-custom text-[10px] text-[#2E2E2E] font-bold">{{ metric }}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Stack Pills -->
+                <div class="flex flex-wrap gap-1.5 pt-4 border-t-2 border-[#F1F1F1]">
+                  <span 
+                    v-for="stack in project.stack" 
+                    :key="stack"
+                    class="bg-[#F1F1F1] text-[#3B3B3B] border border-[#BEC3C7] px-2 py-0.5 font-mono-custom text-[9px] font-bold"
+                  >
+                    #{{ stack }}
+                  </span>
+                </div>
+              </div>
+
+              <!-- Card Action Button -->
+              <div class="border-t-3 border-[#2E2E2E] p-4 bg-white
