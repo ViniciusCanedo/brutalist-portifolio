@@ -1,0 +1,22 @@
+# Agent files
+.agents/
+.specify/
+specs/
+AGENTS.md
+
+# Node.js
+node_modules/
+dist/
+build/
+*.log
+.env*
+
+# Nuxt 3
+.nuxt/
+.output/
+
+# Universal
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
