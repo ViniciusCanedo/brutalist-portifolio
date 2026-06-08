@@ -4,32 +4,41 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --neo-bg: #F1F1F1;
+  --neo-primary: #2E2E2E;
+  --neo-accent: #820ad1;
+  --neo-muted: #BEC3C7;
+  --neo-dark: #3B3B3B;
+  --white: #FFFFFF;
+}
+
 @layer base {
   body {
     font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-    background-color: #F1F1F1;
-    color: #2E2E2E;
+    background-color: var(--neo-bg);
+    color: var(--neo-primary);
   }
 }
 
 @layer components {
   .border-brutal {
-    border: 3px solid #2E2E2E;
+    border: 3px solid var(--neo-primary);
   }
   .border-brutal-accent {
-    border: 3px solid #FF6F20;
+    border: 3px solid var(--neo-accent);
   }
   .shadow-brutal {
-    box-shadow: 4px 4px 0px #2E2E2E;
+    box-shadow: 4px 4px 0px var(--neo-primary);
   }
   .shadow-brutal-accent {
-    box-shadow: 4px 4px 0px #FF6F20;
+    box-shadow: 4px 4px 0px var(--neo-accent);
   }
   .shadow-brutal-lg {
-    box-shadow: 8px 8px 0px #2E2E2E;
+    box-shadow: 8px 8px 0px var(--neo-primary);
   }
   .shadow-brutal-lg-accent {
-    box-shadow: 8px 8px 0px #FF6F20;
+    box-shadow: 8px 8px 0px var(--neo-accent);
   }
 }
 
@@ -39,10 +48,10 @@
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F1F1F1;
-  border-left: 3px solid #2E2E2E;
+  background: var(--neo-bg);
+  border-left: 3px solid var(--neo-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background: #2E2E2E;
-  border: 2px solid #F1F1F1;
+  background: var(--neo-primary);
+  border: 2px solid var(--neo-bg);
 }
