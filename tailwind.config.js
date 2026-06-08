@@ -11,12 +11,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        neoBg: "#F1F1F1",
-        neoPrimary: "#2E2E2E",
-        neoAccent: "#FF6F20",
-        neoMuted: "#BEC3C7",
-        neoDark: "#3B3B3B",
-        white: "#FFFFFF"
+        neoBg: "var(--neo-bg)",
+        neoPrimary: "var(--neo-primary)",
+        neoAccent: "var(--neo-accent)",
+        neoMuted: "var(--neo-muted)",
+        neoDark: "var(--neo-dark)",
+        white: "var(--white)"
       },
       borderWidth: {
         "DEFAULT": "1px",
@@ -24,10 +24,10 @@ module.exports = {
         "6": "6px"
       },
       boxShadow: {
-        "brutal": "4px 4px 0px 0px #2E2E2E",
-        "brutal-accent": "4px 4px 0px 0px #FF6F20",
-        "brutal-lg": "8px 8px 0px 0px #2E2E2E",
-        "brutal-lg-accent": "8px 8px 0px 0px #FF6F20"
+        "brutal": "4px 4px 0px 0px var(--neo-primary)",
+        "brutal-accent": "4px 4px 0px 0px var(--neo-accent)",
+        "brutal-lg": "8px 8px 0px 0px var(--neo-primary)",
+        "brutal-lg-accent": "8px 8px 0px 0px var(--neo-accent)"
       },
       fontFamily: {
         display: ["Space Grotesk", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
