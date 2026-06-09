@@ -27,6 +27,13 @@
       >
         // PROJECTS
       </NuxtLink>
+      <NuxtLink 
+        to="/design-system" 
+        :class="currentPage === 'design-system' ? 'bg-neoAccent text-white' : 'bg-white text-neoPrimary hover:bg-neoBg'"
+        class="px-4 py-2 border-3 border-neoPrimary font-bold text-xs tracking-wide shadow-brutal active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all duration-100 ease-brutal-snappy"
+      >
+        // DESIGN_SYSTEM
+      </NuxtLink>
     </div>
 
     <!-- Mobile menu button -->
@@ -67,6 +74,14 @@
           class="w-full text-center px-4 py-3 border-3 border-neoPrimary font-bold text-sm tracking-wide shadow-brutal active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all duration-100 ease-brutal-snappy"
         >
           // CASE_STUDIES
+        </NuxtLink>
+        <NuxtLink 
+          to="/design-system" 
+          @click="isOpen = false"
+          :class="currentPage === 'design-system' ? 'bg-neoAccent text-white' : 'bg-white text-neoPrimary hover:bg-neoBg'"
+          class="w-full text-center px-4 py-3 border-3 border-neoPrimary font-bold text-sm tracking-wide shadow-brutal active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all duration-100 ease-brutal-snappy"
+        >
+          // DESIGN_SYSTEM
         </NuxtLink>
       </div>
     </transition>
