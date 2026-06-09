@@ -11,7 +11,8 @@
       <!-- EXPERIENCE TIMELINE -->
       <ExperienceTimeline :items="timelineItems" />
 
-
+      <!-- TECH STACK SHOWCASE -->
+      <TechStack />
     </main>
 
     <footer class="bg-neoDark text-neoBg border-t-3 border-neoPrimary p-8 font-mono text-xs text-center">
