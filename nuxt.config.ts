@@ -6,6 +6,13 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
+  app: {
+    pageTransition: {
+      name: 'wipe',
+      mode: 'out-in',
+      css: false
+    }
+  },
   modules: ['@nuxtjs/tailwindcss'],
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css'
