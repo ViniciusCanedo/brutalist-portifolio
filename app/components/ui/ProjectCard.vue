@@ -2,6 +2,13 @@
   <div class="border-3 border-neoPrimary bg-white text-neoPrimary shadow-brutal hover:shadow-brutal-accent hover:-translate-x-1 hover:-translate-y-1 transition-all duration-150 flex flex-col h-full">
     <!-- Header Banner -->
     <div class="h-40 border-b-3 border-neoPrimary bg-neoDark p-4 flex flex-col justify-between relative overflow-hidden">
+      <!-- Background Image if present -->
+      <img 
+        v-if="project.imageUrl" 
+        :src="project.imageUrl" 
+        alt="" 
+        class="absolute inset-0 w-full h-full object-cover opacity-50 z-0 border-none pointer-events-none" 
+      />
       <div class="flex justify-between items-start z-10">
         <span class="bg-white text-neoPrimary border-2 border-neoPrimary px-2 py-0.5 font-mono text-[9px] font-bold uppercase">
           {{ project.tag }}
@@ -56,14 +63,52 @@
           #{{ tech }}
         </span>
       </div>
+
+      <!-- Action Buttons Row -->
+      <div v-if="project.githubUrl || project.previewUrl" class="flex gap-3 pt-4 border-t-2 border-neoBg mt-auto">
+        <a
+          v-if="project.githubUrl"
+          :href="project.githubUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex-1 text-center py-2 bg-white text-neoPrimary border-3 border-neoPrimary font-mono text-[10px] font-bold uppercase tracking-wider shadow-[3px_3px_0px_0px_#2E2E2E] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none transition-all duration-100 ease-brutal-snappy cursor-pointer"
+        >
+          GITHUB
+        </a>
+        <a
+          v-if="project.previewUrl"
+          :href="project.previewUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex-1 text-center py-2 bg-[var(--neo-accent)] text-white border-3 border-neoPrimary font-mono text-[10px] font-bold uppercase tracking-wider shadow-[3px_3px_0px_0px_#2E2E2E] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none transition-all duration-100 ease-brutal-snappy cursor-pointer"
+        >
+          PREVIEW
+        </a>
+      </div>
     </div>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
-defineProps({
-  project: { type: Object, required: true }
-})
+
+export interface Project {
+  id: string
+  title: string
+  tag: string
+  metric: string
+  role: string
+  desc: string
+  metrics: string[]
+  stack: string[]
+  githubUrl?: string
+  previewUrl?: string
+  imageUrl?: string
+}
+
+defineProps<{
+  project: Project
+}>()
+
 const activeTab = ref('summary')
 </script>
