@@ -42,12 +42,13 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed } from 'vue'
+import type { Project } from '~/components/ui/ProjectCard.vue'
 
 const activeFilter = ref('ALL')
 
-const projects = ref([
+const projects = ref<Project[]>([
   {
     id: 'telemetry-engine',
     title: 'Telemetry HUD Engine',
@@ -61,7 +62,10 @@ const projects = ref([
       'SSR_COMPILATION: Zero warnings',
       'DYNAMICS: WebSockets integrations'
     ],
-    stack: ['nuxt3', 'bun', 'tailwind', 'typescript']
+    stack: ['nuxt3', 'bun', 'tailwind', 'typescript'],
+    githubUrl: 'https://github.com/stark-dev/telemetry-hud',
+    previewUrl: 'https://telemetry.stark-dev.example.com',
+    imageUrl: '/img/telemetry_hud_thumbnail.png'
   },
   {
     id: 'performance-optimizer',
@@ -76,7 +80,10 @@ const projects = ref([
       'LIGHTHOUSE_SCORE: 100% flat performance',
       'MEMORY_USAGE: < 80MB execution limit'
     ],
-    stack: ['bun', 'postcss', 'esbuild', 'javascript']
+    stack: ['bun', 'postcss', 'esbuild', 'javascript'],
+    githubUrl: 'https://github.com/stark-dev/workbench-bundler',
+    previewUrl: 'https://bundler.stark-dev.example.com',
+    imageUrl: '/img/workbench_bundler_thumbnail.png'
   },
   {
     id: 'dynamic-sandbox',
@@ -91,7 +98,10 @@ const projects = ref([
       'FRAME_RATE: Lock 60fps rendering',
       'RELOADS: Hot update configurations'
     ],
-    stack: ['gsap3', 'vue3', 'tailwind', 'html5']
+    stack: ['gsap3', 'vue3', 'tailwind', 'html5'],
+    githubUrl: 'https://github.com/stark-dev/gsap-motion-engine',
+    previewUrl: 'https://motion.stark-dev.example.com',
+    imageUrl: '/img/gsap_motion_engine_thumbnail.png'
   }
 ])
 

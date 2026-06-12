@@ -1,5 +1,6 @@
 <template>
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center py-8 md:py-16 max-w-7xl mx-auto w-full px-4 select-none">
+  <div class="relative w-full flex flex-col items-center">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center py-8 md:py-16 max-w-7xl mx-auto w-full px-4 select-none">
     <!-- Left Details Column -->
     <div class="lg:col-span-7 flex flex-col justify-center space-y-6">
       <div class="space-y-4">
@@ -68,6 +69,18 @@
         <div class="absolute -bottom-3 -right-3 bg-neoAccent text-white font-mono text-[9px] font-bold px-2 py-1 border-3 border-neoPrimary shadow-brutal">
           BEARD_PROTECTION // DETECTED
         </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Scroll Indicator -->
+    <div class="hero-animate mt-4 mb-2 flex justify-center z-10">
+      <div 
+        class="flex items-center justify-center w-12 h-12 bg-neoAccent text-white border-3 border-neoPrimary shadow-[3px_3px_0px_0px_#2E2E2E] animate-bounce select-none pointer-events-none"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 13l-7 7-7-7m14-6l-7 7-7-7" />
+        </svg>
       </div>
     </div>
   </div>

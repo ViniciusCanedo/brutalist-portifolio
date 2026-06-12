@@ -13,6 +13,9 @@
 
       <!-- TECH STACK SHOWCASE -->
       <TechStack />
+
+      <!-- FEATURED PROJECTS SHOWCASE -->
+      <FeaturedProjects />
     </main>
 
     <footer class="bg-neoDark text-neoBg border-t-3 border-neoPrimary p-8 font-mono text-xs text-center">
