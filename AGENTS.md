@@ -3,3 +3,5 @@ For additional context about technologies to be used, project structure,
 shell commands, and other important information, read the current plan
 at specs/007-contact-flow/plan.md
 <!-- SPECKIT END -->
+NEVER execute git add or git commit
+NEVER execute git push
