@@ -1,26 +1,35 @@
 <template>
-  <div class="min-h-screen flex flex-col bg-neoBg transition-colors">
-    <!-- Navbar -->
-    <Navbar current-page="landing" />
+  <div class="min-h-screen flex flex-col bg-transparent transition-colors">
+    <!-- Page Content Wrapper (Overlays the fixed marquee) -->
+    <div class="relative z-10 bg-neoBg flex flex-col w-full flex-1">
+      <!-- Navbar -->
+      <Navbar current-page="landing" />
 
-    <!-- Main Content -->
-    <main class="flex-1 p-4 md:p-8 max-w-7xl mx-auto w-full space-y-12">
-      <!-- HERO SECTION -->
-      <HeroSection />
+      <!-- Main Content -->
+      <main class="flex-1 p-4 md:p-8 max-w-7xl mx-auto w-full space-y-12">
+        <!-- HERO SECTION -->
+        <HeroSection />
 
-      <!-- EXPERIENCE TIMELINE -->
-      <ExperienceTimeline :items="timelineItems" />
+        <!-- EXPERIENCE TIMELINE -->
+        <ExperienceTimeline :items="timelineItems" />
 
-      <!-- TECH STACK SHOWCASE -->
-      <TechStack />
+        <!-- TECH STACK SHOWCASE -->
+        <TechStack />
 
-      <!-- FEATURED PROJECTS SHOWCASE -->
-      <FeaturedProjects />
-    </main>
+        <!-- FEATURED PROJECTS SHOWCASE -->
+        <FeaturedProjects />
+      </main>
 
-    <footer class="bg-neoDark text-neoBg border-t-3 border-neoPrimary p-8 font-mono text-xs text-center">
-      &copy; 2026 STARK_DEV // ALL TELEMETRY SECURED.
-    </footer>
+      <!-- CONTACT FLOW -->
+      <ContactSection />
+
+      <footer class="bg-neoDark text-neoBg border-t-3 border-neoPrimary p-8 font-mono text-xs text-center relative z-10">
+        &copy; 2026 STARK_DEV // ALL TELEMETRY SECURED.
+      </footer>
+    </div>
+
+    <!-- MARQUEE REVEAL LAYER -->
+    <MarqueeNameReveal />
   </div>
 </template>
 
