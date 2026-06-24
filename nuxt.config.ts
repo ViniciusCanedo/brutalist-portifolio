@@ -13,7 +13,17 @@ export default defineNuxtConfig({
       css: false
     }
   },
-  modules: ['@nuxtjs/tailwindcss'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/turnstile'],
+  runtimeConfig: {
+    turnstile: {
+      secretKey: '',
+    },
+    public: {
+      turnstile: {
+        siteKey: '',
+      },
+    },
+  },
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css'
   },
