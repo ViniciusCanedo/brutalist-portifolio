@@ -19,55 +19,50 @@
         <!-- FEATURED PROJECTS SHOWCASE -->
         <FeaturedProjects />
       </main>
-
-      <!-- CONTACT FLOW -->
-      <ContactSection />
-
-      <footer class="bg-neoDark text-neoBg border-t-3 border-neoPrimary p-8 font-mono text-xs text-center relative z-10">
-        &copy; 2026 STARK_DEV // ALL TELEMETRY SECURED.
-      </footer>
     </div>
-
-    <!-- MARQUEE REVEAL LAYER -->
-    <MarqueeNameReveal />
+    <Footer />
   </div>
 </template>
 
 <script setup lang="ts">
-import type { TimelineItem } from '~/components/index/ExperienceTimeline.vue'
+import type { TimelineItem } from "~/components/index/ExperienceTimeline.vue";
 
 const timelineItems: TimelineItem[] = [
   {
     id: 1,
-    type: 'work',
-    role: 'Software Engineer',
-    organization: 'STARK_DEV',
-    period: '2023 - Present',
-    description: 'Led backend architecture development. Orchestrated high-performance API endpoints, optimized database queries, and automated dev telemetry integrations.'
+    type: "work",
+    role: "Software Engineer",
+    organization: "STARK_DEV",
+    period: "2023 - Present",
+    description:
+      "Led backend architecture development. Orchestrated high-performance API endpoints, optimized database queries, and automated dev telemetry integrations.",
   },
   {
     id: 2,
-    type: 'work',
-    role: 'Full Stack Developer',
-    organization: 'STARK_CORP',
-    period: '2021 - 2023',
-    description: 'Maintained and enhanced core client dashboards, modernized monolithic legacy systems into highly responsive microservice architectures, and led front-end layout transitions.'
+    type: "work",
+    role: "Full Stack Developer",
+    organization: "STARK_CORP",
+    period: "2021 - 2023",
+    description:
+      "Maintained and enhanced core client dashboards, modernized monolithic legacy systems into highly responsive microservice architectures, and led front-end layout transitions.",
   },
   {
     id: 3,
-    type: 'education',
-    role: 'B.S. Computer Science',
-    organization: 'STARK_UNIVERSITY',
-    period: '2017 - 2021',
-    description: 'Graduated with academic honors. Specialized in data structures, design patterns, systems analysis, and interactive animations.'
+    type: "education",
+    role: "B.S. Computer Science",
+    organization: "STARK_UNIVERSITY",
+    period: "2017 - 2021",
+    description:
+      "Graduated with academic honors. Specialized in data structures, design patterns, systems analysis, and interactive animations.",
   },
   {
     id: 4,
-    type: 'work',
-    role: 'B.S. Computer Science',
-    organization: 'STARK_UNIVERSITY',
-    period: '2017 - 2021',
-    description: 'Graduated with academic honors. Specialized in data structures, design patterns, systems analysis, and interactive animations.'
-  }
-]
+    type: "work",
+    role: "B.S. Computer Science",
+    organization: "STARK_UNIVERSITY",
+    period: "2017 - 2021",
+    description:
+      "Graduated with academic honors. Specialized in data structures, design patterns, systems analysis, and interactive animations.",
+  },
+];
 </script>
