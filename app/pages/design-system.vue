@@ -20,6 +20,14 @@
       <!-- STICKER PACK MOBILE TEST -->
       <StickerPackMobileTest />
 
+      <!-- Text Distortion Sandbox -->
+      <section class="space-y-4 mt-24">
+        <h2 class="text-2xl font-black uppercase font-mono tracking-tight border-b-3 border-neoPrimary pb-2 text-neoPrimary">
+          // Font_Distortion_Sandbox
+        </h2>
+        <TextDistortionSandbox />
+      </section>
+
       <!-- Token Verification Sandbox -->
       <section class="space-y-4 mt-24">
         <h2 class="text-2xl font-black uppercase font-mono tracking-tight border-b-3 border-neoPrimary pb-2 text-neoPrimary">
