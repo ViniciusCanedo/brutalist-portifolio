@@ -2,7 +2,7 @@
   <section ref="timelineContainer" class="relative max-w-7xl mx-auto w-full px-4 py-16 md:py-24 select-none overflow-hidden">
     <!-- Header -->
     <div class="mb-16 text-center timeline-header">
-      <span class="bg-neoPrimary text-white px-3 py-1.5 border-3 border-neoPrimary font-mono text-xs font-bold uppercase tracking-wider shadow-brutal">
+      <span class="bg-neoAccent text-white px-3 py-1.5 border-3 border-neoPrimary font-mono text-xs font-bold uppercase tracking-wider shadow-brutal">
         // HISTORICAL_OPERATIONAL_LOGS
       </span>
       <h2 class="text-3xl md:text-5xl font-black uppercase text-neoPrimary tracking-tight mt-4">
