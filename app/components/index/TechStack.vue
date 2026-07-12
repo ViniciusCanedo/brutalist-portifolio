@@ -221,7 +221,7 @@ onMounted(async () => {
           scrollTrigger: {
             trigger: desktopBoard.value,
             start: 'top 85%',
-            toggleActions: 'play none none none'
+            toggleActions: 'play reverse play reverse'
           }
         }
       )
@@ -240,7 +240,7 @@ onMounted(async () => {
           scrollTrigger: {
             trigger: mobileAccordion.value,
             start: 'top 90%',
-            toggleActions: 'play none none none'
+            toggleActions: 'play reverse play reverse'
           }
         }
       )
@@ -249,6 +249,7 @@ onMounted(async () => {
 })
 
 onUnmounted(() => {
+  ScrollTrigger.getAll().forEach(t => t.kill())
   if (ctx) {
     ctx.revert()
   }

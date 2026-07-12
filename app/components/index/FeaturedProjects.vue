@@ -121,7 +121,7 @@ onMounted(async () => {
       scrollTrigger: {
         trigger: sectionRef.value,
         start: "top 80%",
-        toggleActions: "play none none none",
+        toggleActions: "play reverse play reverse",
       },
     });
 
@@ -153,6 +153,7 @@ onMounted(async () => {
 });
 
 onUnmounted(() => {
+  ScrollTrigger.getAll().forEach(t => t.kill())
   if (ctx) {
     ctx.revert();
   }
