@@ -15,18 +15,25 @@ module.exports = {
         neoPrimary: "var(--neo-primary)",
         neoAccent: "var(--neo-accent)",
         neoMuted: "var(--neo-muted)",
+        neoMutedSticker: "var(--neo-muted-sticker)",
         neoDark: "var(--neo-dark)",
-        white: "var(--white)"
+        neoSurface: "var(--neo-surface)",
+        neoBorder: "var(--neo-border)",
+        neoShadow: "var(--neo-shadow)"
       },
       borderWidth: {
         "DEFAULT": "1px",
         "3": "3px",
         "6": "6px"
       },
+      borderColor: {
+        neoPrimary: "var(--neo-border)",
+        neoShadow: "var(--neo-shadow)"
+      },
       boxShadow: {
-        "brutal": "4px 4px 0px 0px var(--neo-primary)",
+        "brutal": "4px 4px 0px 0px var(--neo-shadow)",
         "brutal-accent": "4px 4px 0px 0px var(--neo-accent)",
-        "brutal-lg": "8px 8px 0px 0px var(--neo-primary)",
+        "brutal-lg": "8px 8px 0px 0px var(--neo-shadow)",
         "brutal-lg-accent": "8px 8px 0px 0px var(--neo-accent)"
       },
       fontFamily: {

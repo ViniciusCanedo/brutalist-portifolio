@@ -15,7 +15,7 @@
       <!-- Vertical Timeline Axis -->
       <div 
         ref="timelineLine" 
-        class="absolute top-0 bottom-0 left-[26px] md:left-1/2 -translate-x-1/2 w-1 md:w-2 bg-neoPrimary border-l-2 md:border-l-3 border-neoPrimary origin-top z-0"
+        class="absolute top-0 bottom-0 left-[26px] md:left-1/2 -translate-x-1/2 w-1 md:w-2 bg-neoShadow border-l-2 md:border-l-3 border-neoShadow origin-top z-0"
       ></div>
 
       <!-- Timeline Cards Feed -->
@@ -27,7 +27,7 @@
         >
           <!-- Left/Right Card Container (pl-12 on mobile to avoid the axis line) -->
           <div class="pl-12 md:pl-0 w-full md:w-[45%] flex md:justify-end md:odd:justify-start z-10">
-            <div class="w-full bg-white border-3 border-neoPrimary p-5 shadow-brutal hover:-translate-x-1 hover:-translate-y-1 hover:shadow-brutal-accent transition-all duration-100 ease-brutal-snappy cursor-pointer relative timeline-card">
+            <div class="w-full bg-neoSurface border-3 border-neoPrimary p-5 shadow-brutal hover:-translate-x-1 hover:-translate-y-1 hover:shadow-brutal-accent transition-all duration-100 ease-brutal-snappy cursor-pointer relative timeline-card">
               <!-- Meta Header -->
               <div class="flex items-center justify-between gap-3 border-b-2 border-dashed border-neoPrimary pb-2 mb-3">
                 <span class="font-mono text-xs font-bold text-neoPrimary">{{ item.period }}</span>

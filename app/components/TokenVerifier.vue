@@ -1,5 +1,5 @@
 <template>
-  <div class="border-brutal bg-white text-neoPrimary p-6 shadow-brutal max-w-4xl mx-auto space-y-6">
+  <div class="border-brutal bg-neoSurface text-neoPrimary p-6 shadow-brutal max-w-4xl mx-auto space-y-6">
     <div class="border-b-3 border-neoPrimary pb-3">
       <h2 class="text-2xl font-display font-black uppercase tracking-tight">// Neo-Brutalist Token Verifier</h2>
       <p class="font-mono text-xs text-neoMuted mt-1">TESTING INTEGRITY OF REFERENCES/STYLE.JSON</p>
@@ -29,15 +29,15 @@
 
     <!-- Shadows and Borders Row -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div class="border-brutal bg-white p-4 shadow-brutal">
+      <div class="border-brutal bg-neoSurface p-4 shadow-brutal">
         <h4 class="font-display font-bold text-sm uppercase">border-brutal</h4>
         <p class="font-mono text-[10px] text-neoMuted mt-1">shadow-brutal (4px offset)</p>
       </div>
-      <div class="border-brutal bg-white p-4 shadow-brutal-accent">
+      <div class="border-brutal bg-neoSurface p-4 shadow-brutal-accent">
         <h4 class="font-display font-bold text-sm uppercase text-neoAccent">accent-shadow</h4>
         <p class="font-mono text-[10px] text-neoMuted mt-1">shadow-brutal-accent</p>
       </div>
-      <div class="border-brutal bg-white p-4 shadow-brutal-lg">
+      <div class="border-brutal bg-neoSurface p-4 shadow-brutal-lg">
         <h4 class="font-display font-bold text-sm uppercase">large-shadow</h4>
         <p class="font-mono text-[10px] text-neoMuted mt-1">shadow-brutal-lg (8px offset)</p>
       </div>
@@ -53,7 +53,7 @@
     <!-- Interactive GSAP & Easing Checker -->
     <div class="space-y-4">
       <h3 class="font-mono text-xs font-bold uppercase tracking-wider text-neoDark">// 3. GSAP Timeline Animation & Snappy Easing</h3>
-      <div class="border-2 border-neoPrimary p-4 bg-white space-y-4">
+      <div class="border-2 border-neoPrimary p-4 bg-neoSurface space-y-4">
         <div class="flex items-center gap-3">
           <button 
             @click="runGsapAnimation" 
@@ -63,7 +63,7 @@
           </button>
           <button 
             @click="resetGsapAnimation" 
-            class="bg-white hover:bg-neoMuted text-neoPrimary font-bold px-3 py-1.5 border-2 border-neoPrimary shadow-brutal active:shadow-none active:translate-x-0.5 active:translate-y-0.5 font-mono text-[10px] transition-all cursor-pointer"
+            class="bg-neoSurface hover:bg-neoMuted text-neoPrimary font-bold px-3 py-1.5 border-2 border-neoPrimary shadow-brutal active:shadow-none active:translate-x-0.5 active:translate-y-0.5 font-mono text-[10px] transition-all cursor-pointer"
           >
             RESET
           </button>

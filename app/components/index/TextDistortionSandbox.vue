@@ -1,5 +1,5 @@
 <template>
-  <div class="border-3 border-neoPrimary bg-white p-6 md:p-8 shadow-brutal flex flex-col space-y-6">
+  <div class="border-3 border-neoPrimary bg-neoSurface p-6 md:p-8 shadow-brutal flex flex-col space-y-6">
     <!-- Component Header -->
     <div class="border-b-3 border-neoPrimary pb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
       <div>
@@ -15,7 +15,7 @@
         <button
           id="btn-replay"
           type="button"
-          class="bg-neoAccent text-white font-mono font-bold uppercase py-2 px-5 border-3 border-neoPrimary shadow-brutal hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_var(--neo-primary)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_0px_var(--neo-primary)] transition-all cursor-pointer select-none"
+          class="bg-neoAccent text-white font-mono font-bold uppercase py-2 px-5 border-3 border-neoPrimary shadow-brutal hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_var(--neo-shadow)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_0px_var(--neo-shadow)] transition-all cursor-pointer select-none"
           @click="replay"
         >
           REPLAY_GLITCH
@@ -84,7 +84,7 @@
     </div>
 
     <!-- Controls Panel (US3) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-neoBg p-4 border-3 border-neoPrimary shadow-[2px_2px_0px_0px_var(--neo-primary)]">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-neoBg p-4 border-3 border-neoPrimary shadow-[2px_2px_0px_0px_var(--neo-shadow)]">
       <!-- Text input -->
       <div class="flex flex-col space-y-2">
         <label for="input-text" class="text-xs font-mono font-black uppercase text-neoPrimary">
@@ -96,7 +96,7 @@
           type="text"
           placeholder="VINICIUS"
           maxlength="24"
-          class="border-3 border-neoPrimary p-2 text-sm font-mono text-neoPrimary focus:outline-none bg-white shadow-[2px_2px_0px_0px_var(--neo-primary)] focus:shadow-[4px_4px_0px_0px_var(--neo-primary)] transition-all"
+          class="border-3 border-neoPrimary p-2 text-sm font-mono text-neoPrimary focus:outline-none bg-neoSurface shadow-[2px_2px_0px_0px_var(--neo-shadow)] focus:shadow-[4px_4px_0px_0px_var(--neo-shadow)] transition-all"
         />
       </div>
 
@@ -113,7 +113,7 @@
           min="0"
           max="400"
           step="10"
-          class="w-full accent-neoAccent cursor-pointer border-3 border-neoPrimary p-1 bg-white shadow-[2px_2px_0px_0px_var(--neo-primary)]"
+          class="w-full accent-neoAccent cursor-pointer border-3 border-neoPrimary p-1 bg-neoSurface shadow-[2px_2px_0px_0px_var(--neo-shadow)]"
         />
       </div>
 
@@ -130,7 +130,7 @@
           min="0.2"
           max="3.0"
           step="0.1"
-          class="w-full accent-neoAccent cursor-pointer border-3 border-neoPrimary p-1 bg-white shadow-[2px_2px_0px_0px_var(--neo-primary)]"
+          class="w-full accent-neoAccent cursor-pointer border-3 border-neoPrimary p-1 bg-neoSurface shadow-[2px_2px_0px_0px_var(--neo-shadow)]"
         />
       </div>
 
@@ -147,7 +147,7 @@
           min="0.000"
           max="0.200"
           step="0.005"
-          class="w-full accent-neoAccent cursor-pointer border-3 border-neoPrimary p-1 bg-white shadow-[2px_2px_0px_0px_var(--neo-primary)]"
+          class="w-full accent-neoAccent cursor-pointer border-3 border-neoPrimary p-1 bg-neoSurface shadow-[2px_2px_0px_0px_var(--neo-shadow)]"
         />
       </div>
     </div>

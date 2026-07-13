@@ -9,8 +9,23 @@
   --neo-primary: #2E2E2E;
   --neo-accent: #820ad1;
   --neo-muted: #BEC3C7;
+  --neo-muted-sticker: #BEC3C7;
   --neo-dark: #3B3B3B;
-  --white: #FFFFFF;
+  --neo-surface: #FFFFFF;
+  --neo-border: #2E2E2E;
+  --neo-shadow: #2E2E2E;
+}
+
+.dark {
+  --neo-bg: #202325;
+  --neo-primary: #F1F1F1;
+  --neo-accent: #820ad1;
+  --neo-muted: #BEC3C7;
+  --neo-muted-sticker: #3A3F41;
+  --neo-dark: #181A1C;
+  --neo-surface: #181A1C;
+  --neo-border: #2E2E2E;
+  --neo-shadow: #2E2E2E;
 }
 
 @layer base {
@@ -23,19 +38,19 @@
 
 @layer components {
   .border-brutal {
-    border: 3px solid var(--neo-primary);
+    border: 3px solid var(--neo-border);
   }
   .border-brutal-accent {
     border: 3px solid var(--neo-accent);
   }
   .shadow-brutal {
-    box-shadow: 4px 4px 0px var(--neo-primary);
+    box-shadow: 4px 4px 0px var(--neo-shadow);
   }
   .shadow-brutal-accent {
     box-shadow: 4px 4px 0px var(--neo-accent);
   }
   .shadow-brutal-lg {
-    box-shadow: 8px 8px 0px var(--neo-primary);
+    box-shadow: 8px 8px 0px var(--neo-shadow);
   }
   .shadow-brutal-lg-accent {
     box-shadow: 8px 8px 0px var(--neo-accent);
@@ -49,9 +64,9 @@
 }
 ::-webkit-scrollbar-track {
   background: var(--neo-bg);
-  border-left: 3px solid var(--neo-primary);
+  border-left: 3px solid var(--neo-border);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--neo-primary);
+  background: var(--neo-border);
   border: 2px solid var(--neo-bg);
 }

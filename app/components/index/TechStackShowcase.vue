@@ -20,7 +20,7 @@
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:auto-rows-[250px]">
         <div v-for="(category, index) in techStack" :key="'bento-'+category.title" 
-             class="bento-card bg-white border-3 border-neoPrimary p-6 shadow-brutal flex flex-col justify-between"
+             class="bento-card bg-neoSurface border-3 border-neoPrimary p-6 shadow-brutal flex flex-col justify-between"
              :class="{'md:col-span-2': index === 0, 'md:row-span-2': index === 1}">
           <h3 class="text-2xl md:text-3xl font-black uppercase text-neoPrimary mb-4 border-b-2 border-dashed border-neoPrimary pb-2 inline-block">
             {{ category.title }}
@@ -73,7 +73,7 @@
       <h2 class="text-3xl font-black uppercase text-neoPrimary mb-8 border-b-3 border-neoPrimary pb-2">
         C. The Sticker Pack
       </h2>
-      <div class="flex flex-wrap gap-4 justify-center items-center py-16 px-6 bg-white border-3 border-neoPrimary shadow-brutal bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9IiNDQ0NDQ0MiLz48L3N2Zz4=')]">
+      <div class="flex flex-wrap gap-4 justify-center items-center py-16 px-6 bg-neoSurface border-3 border-neoPrimary shadow-brutal bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9IiNDQ0NDQ0MiLz48L3N2Zz4=')]">
         <div v-for="(tech, index) in allTech" :key="'sticker-'+tech"
              class="tech-sticker cursor-pointer font-black text-xl md:text-3xl uppercase tracking-tight px-6 py-3 border-3 border-neoPrimary shadow-brutal absolute-center-origin"
              :style="{ 
@@ -91,7 +91,7 @@
       <h2 class="text-3xl font-black uppercase text-neoPrimary mb-8 border-b-3 border-neoPrimary pb-2">
         D. Mechanical Drawers
       </h2>
-      <div class="border-3 border-neoPrimary bg-white shadow-brutal">
+      <div class="border-3 border-neoPrimary bg-neoSurface shadow-brutal">
         <div v-for="(category, index) in techStack" :key="'drawer-'+category.title" 
              class="drawer-item border-b-3 border-neoPrimary last:border-b-0">
           <button @click="toggleDrawer(index)" 
@@ -107,7 +107,7 @@
             <div class="p-6 md:p-8 border-t-3 border-neoPrimary">
               <div class="flex flex-wrap gap-4">
                 <span v-for="tech in category.tools" :key="'drawer-tech-'+tech" 
-                      class="px-5 py-2.5 bg-white border-3 border-neoPrimary font-bold text-lg md:text-xl shadow-brutal uppercase text-neoPrimary hover:shadow-brutal-accent hover:-translate-x-1 hover:-translate-y-1 transition-all cursor-default">
+                       class="px-5 py-2.5 bg-neoSurface border-3 border-neoPrimary font-bold text-lg md:text-xl shadow-brutal uppercase text-neoPrimary hover:shadow-brutal-accent hover:-translate-x-1 hover:-translate-y-1 transition-all cursor-default">
                   {{ tech }}
                 </span>
               </div>
@@ -141,12 +141,24 @@ const techStack = [
 
 const allTech = techStack.flatMap(cat => cat.tools)
 
-// Colors mapping matching the required Neo-Brutalist palette
-const colors = ['#FF6F20', '#FFFFFF', '#BEC3C7', '#F1F1F1', '#3B3B3B']
-const textColors = ['#FFFFFF', '#2E2E2E', '#2E2E2E', '#2E2E2E', '#FFFFFF']
+import { useState } from '#imports'
 
-const getStickerColor = (index: number) => colors[index % colors.length]
-const getStickerTextColor = (index: number) => textColors[index % textColors.length]
+const isDark = useState('theme-dark', () => false)
+
+const getStickerColor = (index: number) => {
+  const list = isDark.value
+    ? ['#6808A7', '#202325', '#3A3F41', '#CBC6C0', '#181A1C']
+    : ['#FF6F20', '#FFFFFF', '#BEC3C7', '#F1F1F1', '#3B3B3B']
+  return list[index % list.length]
+}
+
+const getStickerTextColor = (index: number) => {
+  const list = isDark.value
+    ? ['#CBC6C0', '#CBC6C0', '#CBC6C0', '#181A1C', '#CBC6C0']
+    : ['#FFFFFF', '#2E2E2E', '#2E2E2E', '#2E2E2E', '#FFFFFF']
+  return list[index % list.length]
+}
+
 const getStickerRotation = (index: number) => {
   // Random static rotation between -10 and 10 degrees based on index to ensure deterministic rendering for SSR
   return (Math.sin(index * 999) * 10).toFixed(1)

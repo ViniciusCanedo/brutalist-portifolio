@@ -18,7 +18,7 @@
         
         <!-- Role Title -->
         <div class="hero-animate">
-          <span class="bg-neoPrimary text-white px-4 py-2 border-3 border-neoPrimary font-mono text-sm sm:text-base font-bold inline-block transform -rotate-1 shadow-brutal-accent">
+          <span class="bg-neoPrimary dark:bg-[#232627] text-white px-4 py-2 border-3 border-neoPrimary font-mono text-sm sm:text-base font-bold inline-block transform -rotate-1 shadow-brutal-accent">
             Role: Software Engineer
           </span>
         </div>
@@ -33,7 +33,7 @@
       </div>
 
       <!-- Tech Stack typing HUD console -->
-      <div class="hero-animate border-3 border-neoPrimary bg-white p-4 shadow-brutal max-w-lg">
+      <div class="hero-animate border-3 border-neoPrimary bg-neoSurface p-4 shadow-brutal max-w-lg">
         <div class="flex items-center justify-between border-b-2 border-neoPrimary pb-2 mb-3">
           <span class="font-mono text-[10px] font-bold text-neoMuted uppercase tracking-wider">Console // Tech_Stack</span>
           <div class="flex gap-1">
@@ -54,7 +54,7 @@
 
     <!-- Right Profile Photo Column -->
     <div class="lg:col-span-5 flex justify-center">
-      <div class="hero-animate border-3 border-neoPrimary bg-white p-3 shadow-brutal-lg max-w-md w-full relative">
+      <div class="hero-animate border-3 border-neoPrimary bg-neoSurface p-3 shadow-brutal-lg max-w-md w-full relative">
         <!-- Authentic beard photo wrapper -->
         <div class="border-3 border-neoPrimary overflow-hidden bg-neoBg aspect-square relative">
           <!-- Grayscale Neo-Brutalist filter applied without beard feature alteration -->
@@ -76,7 +76,7 @@
     <!-- Scroll Indicator -->
     <div class="hero-animate mt-4 mb-2 flex justify-center z-10">
       <div 
-        class="flex items-center justify-center w-12 h-12 bg-neoAccent text-white border-3 border-neoPrimary shadow-[3px_3px_0px_0px_#2E2E2E] animate-bounce select-none pointer-events-none"
+        class="flex items-center justify-center w-12 h-12 bg-neoAccent text-white border-3 border-neoPrimary shadow-[3px_3px_0px_0px_var(--neo-shadow)] animate-bounce select-none pointer-events-none"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
           <path stroke-linecap="round" stroke-linejoin="round" d="M19 13l-7 7-7-7m14-6l-7 7-7-7" />

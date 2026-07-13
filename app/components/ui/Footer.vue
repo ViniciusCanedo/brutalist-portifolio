@@ -16,7 +16,7 @@
             aria-label="Return Home"
           >
             <span
-              class="bg-neoAccent text-white p-2 border-3 border-neoPrimary font-bold text-lg shadow-brutal flex items-center justify-center w-10 h-10 hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[5px_5px_0px_var(--neo-primary)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all duration-100 ease-brutal-snappy"
+              class="bg-neoAccent text-white p-2 border-3 border-neoPrimary font-bold text-lg shadow-brutal flex items-center justify-center w-10 h-10 hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[5px_5px_0px_var(--neo-shadow)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all duration-100 ease-brutal-snappy"
             >
               VC
             </span>
@@ -98,7 +98,7 @@
 
         <!-- Column 3: Secure Contact Form -->
         <div
-          class="bg-white border-3 border-neoPrimary p-4 md:p-8 shadow-brutal-lg order-2 md:order-3 w-full"
+          class="bg-neoSurface border-3 border-neoPrimary p-4 md:p-8 shadow-brutal-lg order-2 md:order-3 w-full"
         >
           <h3
             class="text-lg md:text-xl font-bold font-display uppercase tracking-tight text-neoPrimary mb-6 pb-4 border-b-3 border-neoPrimary"
@@ -136,7 +136,7 @@
                 required
                 :disabled="loading"
                 placeholder="YOUR NAME"
-                class="w-full bg-white text-neoPrimary border-3 border-neoPrimary px-3 py-2.5 focus:outline-none focus:border-neoAccent focus:shadow-brutal-accent shadow-brutal transition-all duration-150 placeholder:text-neoMuted font-mono text-xs"
+                class="w-full bg-neoSurface text-neoPrimary border-3 border-neoPrimary px-3 py-2.5 focus:outline-none focus:border-neoAccent focus:shadow-brutal-accent shadow-brutal transition-all duration-150 placeholder:text-neoMuted font-mono text-xs"
               />
             </div>
 
@@ -154,7 +154,7 @@
                 required
                 :disabled="loading"
                 placeholder="YOUR@EMAIL.COM"
-                class="w-full bg-white text-neoPrimary border-3 border-neoPrimary px-3 py-2.5 focus:outline-none focus:border-neoAccent focus:shadow-brutal-accent shadow-brutal transition-all duration-150 placeholder:text-neoMuted font-mono text-xs"
+                class="w-full bg-neoSurface text-neoPrimary border-3 border-neoPrimary px-3 py-2.5 focus:outline-none focus:border-neoAccent focus:shadow-brutal-accent shadow-brutal transition-all duration-150 placeholder:text-neoMuted font-mono text-xs"
               />
             </div>
 
@@ -171,7 +171,7 @@
                 type="text"
                 :disabled="loading"
                 placeholder="+55 (15) 99999-9999"
-                class="w-full bg-white text-neoPrimary border-3 border-neoPrimary px-3 py-2.5 focus:outline-none focus:border-neoAccent focus:shadow-brutal-accent shadow-brutal transition-all duration-150 placeholder:text-neoMuted font-mono text-xs"
+                class="w-full bg-neoSurface text-neoPrimary border-3 border-neoPrimary px-3 py-2.5 focus:outline-none focus:border-neoAccent focus:shadow-brutal-accent shadow-brutal transition-all duration-150 placeholder:text-neoMuted font-mono text-xs"
               />
             </div>
 
@@ -189,7 +189,7 @@
                 rows="3"
                 :disabled="loading"
                 placeholder="ENTER MESSAGE..."
-                class="w-full bg-white text-neoPrimary border-3 border-neoPrimary px-3 py-2.5 focus:outline-none focus:border-neoAccent focus:shadow-brutal-accent shadow-brutal transition-all duration-150 placeholder:text-neoMuted font-mono text-xs"
+                class="w-full bg-neoSurface text-neoPrimary border-3 border-neoPrimary px-3 py-2.5 focus:outline-none focus:border-neoAccent focus:shadow-brutal-accent shadow-brutal transition-all duration-150 placeholder:text-neoMuted font-mono text-xs"
               ></textarea>
             </div>
 
@@ -230,9 +230,9 @@
           <span
             v-for="tech in allTech"
             :key="'footer-tech-' + tech + '-' + i"
-            class="text-white text-4xl font-black uppercase tracking-widest px-8"
+            class="text-neoSurface text-4xl font-black uppercase tracking-widest px-8"
           >
-            {{ tech }} <span class="text-neoPrimary ml-8">✦</span>
+            {{ tech }} <span class="text-neoDark ml-8">✦</span>
           </span>
         </div>
       </div>
