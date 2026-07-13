@@ -52,11 +52,11 @@ const componentProps = computed(() => {
 const classes = computed(() => {
   const base = 'inline-block border-3 border-neoPrimary font-bold font-display uppercase tracking-wide text-center transition-all duration-100 ease-brutal-snappy select-none cursor-pointer disabled:opacity-50 disabled:pointer-events-none'
   
-  const shadow = 'shadow-brutal hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_var(--neo-primary)] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none'
+  const shadow = 'shadow-brutal hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_var(--neo-shadow)] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none'
   
   const colors = props.variant === 'accent'
     ? 'bg-neoAccent text-white'
-    : 'bg-white text-neoPrimary hover:bg-neoBg'
+    : 'bg-neoSurface text-neoPrimary hover:bg-neoBg'
     
   return `${base} ${shadow} ${colors}`
 })

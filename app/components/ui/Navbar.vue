@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="sticky top-0 z-50 bg-white border-b-3 border-neoPrimary text-neoPrimary px-4 py-4 flex items-center justify-between transition-colors"
+    class="sticky top-0 z-50 bg-neoSurface border-b-3 border-neoPrimary text-neoPrimary px-4 py-4 flex items-center justify-between transition-colors"
   >
     <!-- Branding logo -->
     <div class="flex items-center gap-3 select-none">
@@ -44,15 +44,99 @@
       >
         // DESIGN_SYSTEM
       </BrutalistButton>
+
+      <!-- Theme Toggle Button -->
+      <BrutalistButton
+        id="theme-toggle-btn"
+        @click="toggleTheme"
+        variant="light"
+        aria-label="Toggle Theme"
+        class="p-2 flex items-center justify-center w-10 h-10"
+      >
+        <!-- Sun Icon -->
+        <svg
+          v-if="isDark"
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="3"
+        >
+          <path
+            stroke-linecap="square"
+            stroke-linejoin="miter"
+            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m11.314 11.314l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z"
+          />
+        </svg>
+        <!-- Moon Icon -->
+        <svg
+          v-else
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="3"
+        >
+          <path
+            stroke-linecap="square"
+            stroke-linejoin="miter"
+            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+          />
+        </svg>
+      </BrutalistButton>
     </div>
 
-    <!-- Mobile menu button -->
-    <div class="flex md:hidden">
+    <!-- Mobile menu button and theme toggle -->
+    <div class="flex md:hidden items-center gap-3">
+      <!-- Theme Toggle Button -->
+      <BrutalistButton
+        id="theme-toggle-btn-mobile"
+        @click="toggleTheme"
+        variant="light"
+        aria-label="Toggle Theme"
+        class="p-2 flex items-center justify-center w-10 h-10"
+      >
+        <!-- Sun Icon -->
+        <svg
+          v-if="isDark"
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="3"
+        >
+          <path
+            stroke-linecap="square"
+            stroke-linejoin="miter"
+            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m11.314 11.314l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z"
+          />
+        </svg>
+        <!-- Moon Icon -->
+        <svg
+          v-else
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="3"
+        >
+          <path
+            stroke-linecap="square"
+            stroke-linejoin="miter"
+            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+          />
+        </svg>
+      </BrutalistButton>
+
       <BrutalistButton
         @click="isOpen = !isOpen"
         variant="light"
         aria-label="Toggle Menu"
-        class="p-2 flex items-center justify-center"
+        class="p-2 flex items-center justify-center w-10 h-10"
       >
         <!-- Custom Neo-Brutalist Hamburger/X Icon -->
         <svg
@@ -92,7 +176,7 @@
     <transition name="menu-slide">
       <div
         v-if="isOpen"
-        class="absolute top-full left-0 right-0 bg-white border-b-3 border-neoPrimary p-4 flex flex-col gap-3 shadow-brutal-lg md:hidden z-40"
+        class="absolute top-full left-0 right-0 bg-neoSurface border-b-3 border-neoPrimary p-4 flex flex-col gap-3 shadow-brutal-lg md:hidden z-40"
       >
         <BrutalistButton
           to="/"
@@ -124,13 +208,49 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
+import { useState } from "#imports";
 
 defineProps({
   currentPage: { type: String, default: "landing" },
 });
 
 const isOpen = ref(false);
+const isDark = useState('theme-dark', () => false);
+let mediaQueryList = null;
+
+const handleSystemThemeChange = (e) => {
+  const stored = localStorage.getItem("brutalist-portfolio-theme");
+  if (!stored) {
+    isDark.value = e.matches;
+  }
+};
+
+onMounted(() => {
+  if (typeof window !== "undefined") {
+    mediaQueryList = window.matchMedia("(prefers-color-scheme: dark)");
+    if (mediaQueryList.addEventListener) {
+      mediaQueryList.addEventListener("change", handleSystemThemeChange);
+    } else {
+      mediaQueryList.addListener(handleSystemThemeChange);
+    }
+  }
+});
+
+onUnmounted(() => {
+  if (mediaQueryList) {
+    if (mediaQueryList.removeEventListener) {
+      mediaQueryList.removeEventListener("change", handleSystemThemeChange);
+    } else {
+      mediaQueryList.removeListener(handleSystemThemeChange);
+    }
+  }
+});
+
+const toggleTheme = () => {
+  isDark.value = !isDark.value;
+  localStorage.setItem("brutalist-portfolio-theme", isDark.value ? "dark" : "light");
+};
 </script>
 
 <style scoped>

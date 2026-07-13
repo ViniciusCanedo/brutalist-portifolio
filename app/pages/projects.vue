@@ -8,7 +8,7 @@
       <main class="flex-1 p-4 md:p-8 max-w-7xl mx-auto w-full space-y-8">
         <!-- Filter Header -->
         <header
-          class="border-3 border-neoPrimary bg-white text-neoPrimary p-6 shadow-brutal flex flex-col md:flex-row md:items-center justify-between gap-4 transition-colors"
+          class="border-3 border-neoPrimary bg-neoSurface text-neoPrimary p-6 shadow-brutal flex flex-col md:flex-row md:items-center justify-between gap-4 transition-colors"
         >
           <div>
             <span class="font-mono text-xs text-neoAccent font-bold"
@@ -28,7 +28,7 @@
               :class="
                 activeFilter === cat
                   ? 'bg-neoAccent text-white'
-                  : 'bg-white text-neoPrimary hover:bg-neoBg'
+                  : 'bg-neoSurface text-neoPrimary hover:bg-neoBg'
               "
               class="px-4 py-2 border-3 border-neoPrimary font-mono text-xs font-bold transition-all duration-100 shadow-brutal active:shadow-none active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
             >

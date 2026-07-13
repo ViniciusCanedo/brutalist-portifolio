@@ -26,7 +26,7 @@
       <div class="flex gap-4 md:flex-wrap flex-nowrap overflow-x-auto hide-scrollbar pb-6 -mx-4 px-4 md:mx-0 md:px-0">
         <div v-for="(tech, index) in techStack" :key="'var-a-'+tech"
              class="whitespace-nowrap px-5 py-2.5 border-[3px] border-neoPrimary shadow-sticker font-black text-lg md:text-xl uppercase tracking-tight hover:-translate-y-1 hover:-translate-x-1 transition-transform cursor-default"
-             :style="{ backgroundColor: getBgColor(index), color: '#2E2E2E' }">
+             :style="{ backgroundColor: getBgColor(index), color: getTextColor(index) }">
           {{ tech }}
         </div>
       </div>
@@ -47,7 +47,7 @@
           <div v-for="(tech, index) in techStack" :key="'var-b-'+tech"
                class="tech-sticker-var-b px-5 py-2.5 border-[3px] border-neoPrimary shadow-sticker font-black text-lg md:text-xl uppercase tracking-tight hover:-translate-y-1 hover:-translate-x-1 transition-transform cursor-default"
                :class="{ 'hidden md:block': index >= 6 && !isExpanded }"
-               :style="{ backgroundColor: getBgColor(index), color: '#2E2E2E' }">
+               :style="{ backgroundColor: getBgColor(index), color: getTextColor(index) }">
             {{ tech }}
           </div>
           
@@ -61,7 +61,7 @@
         <!-- Collapse Button -->
         <div v-show="isExpanded" class="mt-8 text-center md:hidden">
           <button @click="collapse" 
-                  class="px-6 py-2.5 border-[3px] border-neoPrimary shadow-sticker font-black text-lg uppercase tracking-tight bg-white text-neoPrimary hover:-translate-y-1 hover:-translate-x-1 transition-transform cursor-pointer">
+                  class="px-6 py-2.5 border-[3px] border-neoPrimary shadow-sticker font-black text-lg uppercase tracking-tight bg-neoSurface text-neoPrimary hover:-translate-y-1 hover:-translate-x-1 transition-transform cursor-pointer">
             - Show Less
           </button>
         </div>
@@ -71,7 +71,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onUnmounted, nextTick } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import { gsap } from 'gsap'
 
 const techStack = [
@@ -80,9 +80,24 @@ const techStack = [
   'Node.js', 'React', 'Kubernetes'
 ]
 
+import { useState } from '#imports'
+
+const isDark = useState('theme-dark', () => false)
+
 // Alternating palette specified by requirements
-const colors = ['#F1F1F1', '#BEC3C7', '#FF6F20']
-const getBgColor = (index: number) => colors[index % colors.length]
+const getBgColor = (index: number) => {
+  const list = isDark.value
+    ? ['#202325', '#3A3F41', '#6808A7']
+    : ['#F1F1F1', '#BEC3C7', '#FF6F20']
+  return list[index % list.length]
+}
+
+const getTextColor = (index: number) => {
+  const list = isDark.value
+    ? ['#CBC6C0', '#CBC6C0', '#CBC6C0']
+    : ['#2E2E2E', '#2E2E2E', '#2E2E2E']
+  return list[index % list.length]
+}
 
 // Variation B Logic
 const isExpanded = ref(false)
@@ -154,9 +169,9 @@ onUnmounted(() => {
 
 /* Custom Brutalist Shadow matching requirements */
 .shadow-sticker {
-  box-shadow: 4px 4px 0px #2E2E2E;
+  box-shadow: 4px 4px 0px var(--neo-shadow);
 }
 .shadow-sticker:hover {
-  box-shadow: 6px 6px 0px #2E2E2E;
+  box-shadow: 6px 6px 0px var(--neo-shadow);
 }
 </style>

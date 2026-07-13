@@ -17,7 +17,7 @@
     <!-- LAYOUT 1: Desktop - Sticker Pack on Dotted Board (hidden md:block) -->
     <div 
       ref="desktopBoard"
-      class="hidden md:block border-3 border-neoPrimary bg-white shadow-brutal p-12 relative dotted-board overflow-hidden min-h-[400px]"
+      class="hidden md:block border-3 border-neoPrimary bg-neoSurface shadow-brutal p-12 relative dotted-board overflow-hidden min-h-[400px]"
     >
       <!-- Scattered stickers using flex-wrap and gap -->
       <div class="flex flex-wrap gap-5 justify-center items-center py-8">
@@ -38,7 +38,7 @@
     <!-- LAYOUT 2: Mobile - Mechanical Drawers (block md:hidden) -->
     <div 
       ref="mobileAccordion"
-      class="block md:hidden border-3 border-neoPrimary bg-white shadow-brutal divide-y-3 divide-neoPrimary"
+      class="block md:hidden border-3 border-neoPrimary bg-neoSurface shadow-brutal divide-y-3 divide-neoPrimary"
     >
       <div 
         v-for="category in categories" 
@@ -49,14 +49,14 @@
         <button 
           @click="toggleDrawer(category.id)"
           class="w-full flex justify-between items-center px-6 py-6 active:bg-neoAccent active:text-white transition-colors duration-200 text-left group select-none"
-          :class="activeDrawer === category.id ? 'bg-neoAccent text-white' : 'bg-white text-neoPrimary'"
+          :class="activeDrawer === category.id ? 'bg-neoAccent text-white' : 'bg-neoSurface text-neoPrimary'"
         >
           <h3 class="text-2xl font-black uppercase tracking-tight">
             {{ category.title }}
           </h3>
           <!-- Toggle Indicator Icon with bold, thick border -->
           <span 
-            class="w-10 h-10 flex items-center justify-center border-3 border-neoPrimary bg-white text-neoPrimary shadow-brutal transition-all duration-200 transform group-active:translate-x-[4px] group-active:translate-y-[4px] group-active:shadow-none"
+            class="w-10 h-10 flex items-center justify-center border-3 border-neoPrimary bg-neoSurface text-neoPrimary shadow-brutal transition-all duration-200 transform group-active:translate-x-[4px] group-active:translate-y-[4px] group-active:shadow-none"
           >
             <span 
               class="font-black text-2xl font-mono inline-block transition-transform duration-200"
@@ -77,7 +77,7 @@
               <span 
                 v-for="item in category.items" 
                 :key="'mobile-item-' + item.name"
-                class="px-4 py-2 bg-white border-2 border-neoPrimary font-bold text-sm shadow-brutal uppercase text-neoPrimary cursor-default select-none"
+                class="px-4 py-2 bg-neoSurface border-2 border-neoPrimary font-bold text-sm shadow-brutal uppercase text-neoPrimary cursor-default select-none"
               >
                 {{ item.name }}
               </span>
@@ -152,9 +152,8 @@ const allStickers = categories.flatMap((cat) =>
   }))
 )
 
-// Background color distribution matching the Neo-Brutalist palette
-// Colors: Accent (bg-neoAccent), Muted (bg-neoMuted), White (bg-white)
-const colors = ['bg-neoAccent text-white', 'bg-neoMuted text-neoPrimary', 'bg-white text-neoPrimary']
+// Colors: Accent (bg-neoAccent), Muted (bg-neoMutedSticker), Surface (bg-neoSurface)
+const colors = ['bg-neoAccent text-white', 'bg-neoMutedSticker text-neoPrimary', 'bg-neoSurface text-neoPrimary']
 
 const getStickerColorClass = (index: number) => {
   return colors[index % colors.length]
@@ -258,8 +257,8 @@ onUnmounted(() => {
 
 <style scoped>
 .dotted-board {
-  background-color: #F1F1F1;
-  background-image: radial-gradient(#BEC3C7 2.5px, transparent 2.5px);
+  background-color: var(--neo-bg);
+  background-image: radial-gradient(var(--neo-muted-sticker) 2.5px, transparent 2.5px);
   background-size: 24px 24px;
 }
 .sticker-hover {
@@ -268,7 +267,7 @@ onUnmounted(() => {
 }
 .sticker-hover:hover {
   transform: scale(1.1) rotate(0deg) !important;
-  box-shadow: 6px 6px 0px #2E2E2E !important;
+  box-shadow: 6px 6px 0px var(--neo-shadow) !important;
   z-index: 10;
 }
 </style>
