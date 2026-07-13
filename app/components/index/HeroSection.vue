@@ -35,7 +35,7 @@
       <!-- Tech Stack typing HUD console -->
       <div class="hero-animate border-3 border-neoPrimary bg-neoSurface p-4 shadow-brutal max-w-lg">
         <div class="flex items-center justify-between border-b-2 border-neoPrimary pb-2 mb-3">
-          <span class="font-mono text-[10px] font-bold text-neoBorder uppercase tracking-wider">Console // Tech_Stack</span>
+          <span class="font-mono text-[10px] font-bold text-neoMuted uppercase tracking-wider">Console // Tech_Stack</span>
           <div class="flex gap-1">
             <span class="w-2.5 h-2.5 rounded-full bg-[#FF5F56] border border-neoPrimary"></span>
             <span class="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] border border-neoPrimary"></span>
@@ -45,7 +45,7 @@
         
         <!-- Typing dynamic display -->
         <div class="font-mono text-base sm:text-lg font-bold flex items-center gap-1 min-h-[32px]">
-          <span class="text-neoBorder select-none">$&nbsp;TECH_STACK:</span>
+          <span class="text-neoMuted select-none">$&nbsp;TECH_STACK:</span>
           <span ref="typingText" class="text-neoAccent font-black uppercase"></span>
           <span ref="cursor" class="text-neoPrimary font-black">|</span>
         </div>
