@@ -208,49 +208,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
-import { useState } from "#imports";
-
 defineProps({
   currentPage: { type: String, default: "landing" },
 });
 
 const isOpen = ref(false);
-const isDark = useState('theme-dark', () => false);
-let mediaQueryList = null;
 
-const handleSystemThemeChange = (e) => {
-  const stored = localStorage.getItem("brutalist-portfolio-theme");
-  if (!stored) {
-    isDark.value = e.matches;
-  }
-};
-
-onMounted(() => {
-  if (typeof window !== "undefined") {
-    mediaQueryList = window.matchMedia("(prefers-color-scheme: dark)");
-    if (mediaQueryList.addEventListener) {
-      mediaQueryList.addEventListener("change", handleSystemThemeChange);
-    } else {
-      mediaQueryList.addListener(handleSystemThemeChange);
-    }
-  }
-});
-
-onUnmounted(() => {
-  if (mediaQueryList) {
-    if (mediaQueryList.removeEventListener) {
-      mediaQueryList.removeEventListener("change", handleSystemThemeChange);
-    } else {
-      mediaQueryList.removeListener(handleSystemThemeChange);
-    }
-  }
-});
-
-const toggleTheme = () => {
-  isDark.value = !isDark.value;
-  localStorage.setItem("brutalist-portfolio-theme", isDark.value ? "dark" : "light");
-};
+const { isDark, toggleTheme } = useTheme();
 </script>
 
 <style scoped>
