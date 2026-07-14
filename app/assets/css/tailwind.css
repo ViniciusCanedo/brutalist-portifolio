@@ -7,7 +7,7 @@
 :root {
   --neo-bg: #F1F1F1;
   --neo-primary: #2E2E2E;
-  --neo-accent: #820ad1;
+  --neo-accent: #AC3DF6;
   --neo-muted: #BEC3C7;
   --neo-muted-sticker: #BEC3C7;
   --neo-dark: #3B3B3B;
@@ -19,7 +19,7 @@
 .dark {
   --neo-bg: #202325;
   --neo-primary: #F1F1F1;
-  --neo-accent: #820ad1;
+  --neo-accent: #AC3DF6;
   --neo-muted: #BEC3C7;
   --neo-muted-sticker: #3A3F41;
   --neo-dark: #181A1C;
