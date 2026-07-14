@@ -37,13 +37,6 @@
       >
         // PROJECTS
       </BrutalistButton>
-      <BrutalistButton
-        to="/design-system"
-        :variant="currentPage === 'design-system' ? 'accent' : 'light'"
-        class="px-4 py-2 text-xs tracking-wide"
-      >
-        // DESIGN_SYSTEM
-      </BrutalistButton>
 
       <!-- Theme Toggle Button -->
       <BrutalistButton
@@ -193,14 +186,6 @@
           class="w-full text-center px-4 py-3 text-sm tracking-wide"
         >
           // PROJECTS
-        </BrutalistButton>
-        <BrutalistButton
-          to="/design-system"
-          @click="isOpen = false"
-          :variant="currentPage === 'design-system' ? 'accent' : 'light'"
-          class="w-full text-center px-4 py-3 text-sm tracking-wide"
-        >
-          // DESIGN_SYSTEM
         </BrutalistButton>
       </div>
     </transition>
