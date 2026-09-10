@@ -5,7 +5,7 @@ pipeline {
         DOCKERHUB_REPO     = 'vcanedo21/brutalist_portifolio'
         DOCKERHUB_CRED_ID  = 'dockerhub_credentials'
 
-        DOCKER_CONFIG      = '/.containers/brutalist-portifolio/docker-compose.yml'
+        COMPOSE_FILE      = '/.containers/brutalist-portifolio/docker-compose.yml'
         
         RELEASE_TAG        = "${env.GITHUB_REF ? env.GITHUB_REF.tokenize('/').last() : 'latest'}"
     }
@@ -46,7 +46,7 @@ pipeline {
             steps {
                 echo "Iniciando o deploy em produção..."
                 // Sobe o ambiente de produção apontando para as novas imagens (garanta que o docker-compose.yml use a tag correspondente ou latest)
-                sh "docker compose -f ${env.DOCKER_CONFIG} up -d --build"
+                sh "docker compose -f ${env.COMPOSE_FILE} up -d --build"
             }
         }
     }
