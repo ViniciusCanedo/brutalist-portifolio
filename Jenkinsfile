@@ -5,24 +5,23 @@ pipeline {
         DOCKERHUB_REPO     = 'vcanedo21/brutalist_portifolio'
         DOCKERHUB_CRED_ID  = 'dockerhub_credentials'
 
-        COMPOSE_FILE      = '/.containers/brutalist-portifolio/docker-compose.yml'
-        
-        RELEASE_TAG        = "${env.GITHUB_REF ? env.GITHUB_REF.tokenize('/').last() : 'latest'}"
+        COMPOSE_FILE      = '/.containers/brutalist-portifolio/docker-compose.yml'  
     }
 
     stages {
         stage('Visualizar Contexto') {
             steps {
-                echo "Iniciando Pipeline para a Release: ${env.RELEASE_TAG}"
+                env.DOCKER_TAG = env.RELEASE_TAG ?: 'latest'
+                echo "Iniciando Pipeline para a Release: ${env.DOCKER_TAG}"
             }
         }
 
         stage('Build das Imagens Docker') {
             steps {
                 script {
-                    echo "Buildando imagem com a tag da release (${env.RELEASE_TAG}) e latest..."
+                    echo "Buildando imagem com a tag da release (${env.DOCKER_TAG}) e latest..."
                     // Builda a imagem localmente aplicando as duas tags
-                    sh "docker build -t ${env.DOCKERHUB_REPO}:${env.RELEASE_TAG} -t ${env.DOCKERHUB_REPO}:latest ."
+                    sh "docker build -t ${env.DOCKERHUB_REPO}:${env.DOCKER_TAG} -t ${env.DOCKERHUB_REPO}:latest ."
                 }
             }
         }
@@ -36,7 +35,7 @@ pipeline {
                     }
                     
                     echo "Publicando imagens no DockerHub..."
-                    sh "docker push ${env.DOCKERHUB_REPO}:${env.RELEASE_TAG}"
+                    sh "docker push ${env.DOCKERHUB_REPO}:${env.DOCKER_TAG}"
                     sh "docker push ${env.DOCKERHUB_REPO}:latest"
                 }
             }
@@ -57,7 +56,7 @@ pipeline {
             sh "docker image prune -f"
         }
         success {
-            echo "Pipeline executado com sucesso! Release ${env.RELEASE_TAG} implantada."
+            echo "Pipeline executado com sucesso! Release ${env.DOCKER_TAG} implantada."
         }
         failure {
             echo "Falha no pipeline. Verifique os logs para mais detalhes."
