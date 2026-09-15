@@ -5,13 +5,13 @@ pipeline {
         DOCKERHUB_REPO     = 'vcanedo21/brutalist_portifolio'
         DOCKERHUB_CRED_ID  = 'dockerhub_credentials'
 
-        COMPOSE_FILE      = '/.containers/brutalist-portifolio/docker-compose.yml'  
+        COMPOSE_FILE      = '/.containers/brutalist-portifolio/docker-compose.yml' 
+        DOCKER_TAG = "${env.RELEASE_TAG ?: 'latest'}" 
     }
 
     stages {
         stage('Visualizar Contexto') {
             steps {
-                env.DOCKER_TAG = env.RELEASE_TAG ?: 'latest'
                 echo "Iniciando Pipeline para a Release: ${env.DOCKER_TAG}"
             }
         }
